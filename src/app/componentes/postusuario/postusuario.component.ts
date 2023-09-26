@@ -6,8 +6,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./postusuario.component.css']
 })
 export class PostusuarioComponent {
-  @Input() publicacion: any; // Input property para recibir datos de la publicación
-  @Input() comentarios: any[] | undefined; // Input property para recibir datos de los comentarios
+  @Input() publicacion: any; 
+  @Input() comentarios: any[] | undefined; 
 
 
   constructor() { }
@@ -16,8 +16,12 @@ export class PostusuarioComponent {
     return this.publicacion ? this.publicacion.length : 0;
   }
 
-  countComentarios(): number {
-    console.log("comentarios")
-    return this.comentarios ? this.comentarios.length : 0;
+  countComentariosPorPublicacion(index: number): number {
+    if (this.comentarios && this.comentarios[index]) {
+      return this.comentarios[index].length;
+    }
+    return 0; 
   }
+  
+  
 }

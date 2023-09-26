@@ -1,6 +1,5 @@
 <div class="row mt-5">
   <div class="col-lg-6 mx-auto">
-
     <div class="alert alert-info">
       <h2>Posts</h2>
       <p class="bold">
@@ -9,22 +8,22 @@
       </p>
 
       <ng-container *ngIf="publicacion && publicacion.length > 0">
-        <div *ngFor="let post of publicacion">
+        <div *ngFor="let post of publicacion; let i = index">
           <div class="alert alert-info">
             <h3>{{ post.title }}</h3>
             <p>{{ post.body }}</p>
             <p>
               <i class="bi bi-chat-left-text custom-icon"></i>
-              Comments: {{ post.reactions }}
+              Comments: {{ countComentariosPorPublicacion(i) }}
             </p>
           </div>
 
           <h2>Comments</h2>
-          <div *ngIf="comentarios && comentarios.length > 0; else noComments">
-            <div *ngFor="let comentario of comentarios">
-                <p>User:{{ comentario.user.username }}</p>
-                <p>{{ comentario.body }}</p>
-                <br>
+          <div *ngIf="comentarios?.[i] && comentarios?.[i].length > 0; else noComments">
+            <div *ngFor="let comentario of comentarios?.[i]">
+              <p>User: {{ comentario.user?.username }}</p>
+              <p>{{ comentario.body }}</p>
+              <br>
             </div>
           </div>
           <ng-template #noComments>
