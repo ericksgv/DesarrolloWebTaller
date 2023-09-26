@@ -23,7 +23,7 @@ export class AppComponent {
   //Este puede ser nulo, mientras el usuario lo busca
   usuario: User | null = null;
 
-  comentarios: Comment[] = [];
+  comentarios: Comment[][] = [];
 
 
   //Tambien vamos a tener un mensaje de error y un post del usuario
@@ -96,18 +96,14 @@ export class AppComponent {
       )
       .subscribe(
         (info: any) => {
-          const allComments = info[0].comments;
-          console.log(allComments)
+          const allComments = info.map((data: any) => data.comments);
           this.comentarios = allComments;
-          
         },
         error => {
           console.error('Error al obtener datos:', error);
         }
-      );
+      );      
       
   }
-
-  
 
 }
