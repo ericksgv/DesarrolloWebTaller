@@ -23,7 +23,7 @@ export class AppComponent {
   //Este puede ser nulo, mientras el usuario lo busca
   usuario: User | null = null;
 
-  comentarios: Comment[] = [];
+  comentarios: Comment[] | null = [];
 
 
   //Tambien vamos a tener un mensaje de error y un post del usuario
@@ -40,7 +40,13 @@ export class AppComponent {
 
   //Esta funcion se llama cuando se presiona el boton "buscar usuario"
   searchUser() {
-    this.getUserAndPost();
+    if(this.getUserAndPost() == null){
+      this.mensajeError = "No se encontró al usuario"
+      this.usuario = null
+      this.publicacion = null
+      this.comentarios = null
+
+    }
   }
 
   //Crearemos esta segunda funcion que obtiene el post del usuario a partir de su id

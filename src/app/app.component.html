@@ -9,20 +9,29 @@
         </div>
         <button type="submit" class="btn btn-custom btn-block">Buscar Usuario</button>
       </form>
+
+      <div *ngIf="mensajeError" class="alert alert-danger error-message">
+        <i class="fas fa-exclamation-circle error-icon"></i>{{ mensajeError }}
+      </div>
+      
     </div>
   </div>
-  <app-user-info [usuario]="usuario"></app-user-info>
-  <app-postusuario [publicacion]="publicacion"></app-postusuario>
 
-  <h2>Comentarios</h2>
-  <div *ngIf="comentarios && comentarios.length > 0; else noComments">
-    <div *ngFor="let comentario of comentarios">
-      <p>{{ comentario.user.username }}: {{ comentario.body }}</p>
+  <ng-container *ngIf="usuario">
+    <app-user-info [usuario]="usuario"></app-user-info>
+  </ng-container>
+
+  <ng-container *ngIf="publicacion">
+    <app-postusuario [publicacion]="publicacion"></app-postusuario>
+    <h2>Comentarios</h2>
+    <div *ngIf="comentarios && comentarios.length > 0; else noComments">
+      <div *ngFor="let comentario of comentarios">
+        <p>{{ comentario.user.username }}: {{ comentario.body }}</p>
+      </div>
     </div>
-  </div>
-  <ng-template #noComments>
-    <p>No hay comentarios.</p>
-  </ng-template>
-  <p>Cantidad de comentarios: {{ countComentarios() }}</p>
-
+    <ng-template #noComments>
+      <p>No hay comentarios.</p>
+    </ng-template>
+    <p>Cantidad de comentarios: {{ countComentarios() }}</p>
+  </ng-container>
 </div>
