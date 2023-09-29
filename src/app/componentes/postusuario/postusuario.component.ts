@@ -9,4 +9,8 @@ export class PostusuarioComponent {
   @Input() publicacion: any; // Input property para recibir datos de la publicación
 
   constructor() { }
+
+  countPublicaciones(): number {
+    return this.publicacion ? this.publicacion.length : 0;
+  }
 }

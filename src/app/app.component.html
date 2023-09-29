@@ -13,13 +13,16 @@
   </div>
   <app-user-info [usuario]="usuario"></app-user-info>
   <app-postusuario [publicacion]="publicacion"></app-postusuario>
-  <div *ngFor="let comment of processedComments">
-    <div class="alert alert-warning mt-4">
-      <h2 class="mb-3">Comentario</h2>
-      <p><strong>Nombre del autor:</strong> {{ comment.authorName }}</p>
-      <p><strong>Contenido del comentario:</strong> {{ comment.body }}</p>
+
+  <h2>Comentarios</h2>
+  <div *ngIf="comentarios && comentarios.length > 0; else noComments">
+    <div *ngFor="let comentario of comentarios">
+      <p>{{ comentario.user.username }}: {{ comentario.body }}</p>
     </div>
   </div>
-  
-</div>
+  <ng-template #noComments>
+    <p>No hay comentarios.</p>
+  </ng-template>
+  <p>Cantidad de comentarios: {{ countComentarios() }}</p>
 
+</div>
