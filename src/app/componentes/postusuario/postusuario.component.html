@@ -1,22 +1,27 @@
 <div class="row mt-5">
   <div class="col-lg-6 mx-auto">
-    <h2>Publicaciones</h2>
+    <h2>Posts</h2>
     <ng-container *ngIf="publicacion">
       <div class="alert alert-info">
         <div *ngIf="publicacion.length > 0; else noPosts">
           <div *ngFor="let post of publicacion">
             <div class="alert alert-info">
-              <h3>Título: {{ post.title }}</h3>
-              <p>Cuerpo: {{ post.body }}</p>
+              <h3>{{ post.title }}</h3>
+              <p>{{ post.body }}</p>
+              <p>
+                <i class="bi bi-chat-left-text"></i>
+                Comments: {{ post.reactions }}
+              </p>
+
             </div>
           </div>
         </div>
         <ng-template #noPosts>
-          <p>No hay publicaciones.</p>
+          <p>No posts available.</p>
         </ng-template>
         <p>
           <i class="bi bi-journal-text"></i>
-          Cantidad de publicaciones: {{ countPublicaciones() }}
+          Number of posts: {{ countPublicaciones() }}
         </p>
       </div>
     </ng-container>

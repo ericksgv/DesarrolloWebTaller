@@ -7,5 +7,5 @@ export interface Post{
     id:number,
     title:string,
     body:string,
-    reacciones: number
+    reactions: number
 }

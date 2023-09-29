@@ -41,7 +41,7 @@ export class AppComponent {
   //Esta funcion se llama cuando se presiona el boton "buscar usuario"
   searchUser() {
     if(this.getUserAndPost() == null){
-      this.mensajeError = "No se encontró al usuario"
+      this.mensajeError = "User not found"
       this.usuario = null
       this.publicacion = null
       this.comentarios = null

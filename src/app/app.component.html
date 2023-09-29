@@ -1,13 +1,13 @@
 <div class="container my-5 py-4">
   <div class="row">
     <div class="col-lg-6 mx-auto">
-      <h1 class="text-center mb-4">Buscar Usuario</h1>
+      <h1 class="text-center mb-4">Search User</h1>
       <form #form="ngForm" (ngSubmit)="searchUser()">
         <div class="form-group">
           <label for="username">Username:</label>
           <input type="text" class="form-control" id="username" [(ngModel)]="txtUser" name="username" />
         </div>
-        <button type="submit" class="btn btn-custom btn-block">Buscar Usuario</button>
+        <button type="submit" class="btn btn-custom btn-block">Search User</button>
       </form>
 
       <div *ngIf="mensajeError" class="alert alert-danger error-message mt-3" >
@@ -23,15 +23,15 @@
 
   <ng-container *ngIf="publicacion">
     <app-postusuario [publicacion]="publicacion"></app-postusuario>
-    <h2>Comentarios</h2>
+    <h2>Comments</h2>
     <div *ngIf="comentarios && comentarios.length > 0; else noComments">
       <div *ngFor="let comentario of comentarios">
         <p>{{ comentario.user.username }}: {{ comentario.body }}</p>
       </div>
     </div>
     <ng-template #noComments>
-      <p>No hay comentarios.</p>
+      <p>No comments available.</p>
     </ng-template>
-    <p>Cantidad de comentarios: {{ countComentarios() }}</p>
+    <p>Number of comments: {{ countComentarios() }}</p>
   </ng-container>
 </div>
