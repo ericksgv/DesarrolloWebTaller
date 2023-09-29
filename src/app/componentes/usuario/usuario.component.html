@@ -1,21 +1,28 @@
 <div class="row mt-5">
-    <div class="col-lg-6 mx-auto">
-      <ng-container *ngIf="usuario">
-        <div class="alert alert-success">
-          <h2 class="mb-3">Información del Usuario</h2>
-          <p><strong>Nombre:</strong> {{ usuario.name }}</p>
-          <p><strong>Email:</strong> {{ usuario.email }}</p>
-          <p><strong>Username:</strong> {{ usuario.username }}</p>
-          <p>
-            <strong>Página web:</strong>
-            <a href="{{ usuario.website }}">{{ usuario.website }}</a>
-          </p>
+  <div class="col-lg-6 mx-auto">
+    <ng-container *ngIf="usuario">
+      <div class="alert alert-success">
+        <h2 class="mb-3">Información del Usuario</h2>
+        <div class="row">
+          <div class="col-md-6">
+            <img [src]="usuario.image" alt="Imagen del usuario" class="img-fluid">
+          </div>
+          <div class="col-md-6">
+            <p><strong>Nombre:</strong> {{ usuario.name }}</p>
+            <p><strong>Email:</strong> {{ usuario.email }}</p>
+            <p><strong>Username:</strong> {{ usuario.username }}</p>
+            <p>
+              <strong>Página web:</strong>
+              <a href="{{ usuario.website }}">{{ usuario.website }}</a>
+            </p>
+          </div>
         </div>
-      </ng-container>
-      <ng-container *ngIf="mensajeError">
-        <div class="alert alert-danger mt-4">
-          {{ mensajeError }}
-        </div>
-      </ng-container>
-    </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="mensajeError">
+      <div class="alert alert-danger mt-4">
+        {{ mensajeError }}
+      </div>
+    </ng-container>
   </div>
+</div>

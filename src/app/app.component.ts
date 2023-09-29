@@ -68,6 +68,7 @@ export class AppComponent {
               id: firstUser.id,
               name: firstUser.firstName + ' ' + firstUser.lastName,
               username: firstUser.username,
+              image: firstUser.image,
               email: firstUser.email,
               website: firstUser.domain,
             };
