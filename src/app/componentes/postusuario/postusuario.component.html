@@ -1,7 +1,15 @@
 <div class="row mt-5">
   <div class="col-lg-6 mx-auto">
-    <h2>Posts</h2>
+
+    <div class="alert alert-info">
+      <h2>Posts</h2>
+    <p class="bold">
+      <i class="bi bi-journal-text custom-icon"></i>
+      Number of posts: {{ countPublicaciones() }}
+    </p>
+
     <ng-container *ngIf="publicacion">
+      
       <div class="alert alert-info">
         <div *ngIf="publicacion.length > 0; else noPosts">
           <div *ngFor="let post of publicacion">
@@ -19,11 +27,8 @@
         <ng-template #noPosts>
           <p>No posts available.</p>
         </ng-template>
-        <p>
-          <i class="bi bi-journal-text"></i>
-          Number of posts: {{ countPublicaciones() }}
-        </p>
       </div>
     </ng-container>
   </div>
+</div>
 </div>

@@ -2,6 +2,7 @@
 h2 {
     color: black;
     font-size: 24px; 
+    font-weight: bolder;
   }
   
   /* Estilo para los títulos de los posts */
@@ -16,9 +17,14 @@ h2 {
     font-size: 16px; 
   }
 
+  
+  .bold {
+    font-weight: bold;
+  }
+
   .custom-icon {
     font-size: 24px; /* Tamaño más grande */
     color: #333; /* Color más oscuro */
-    border-width: 4px; /* Grosor del borde aumentado a 4px (ajusta según tus preferencias) */
+    border-width: 4px; /* Grosor del borde aumentado a 4px*/
     padding: 6px; /* Espaciado interior para el borde */
 }
