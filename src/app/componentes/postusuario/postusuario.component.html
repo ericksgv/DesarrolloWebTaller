@@ -1,0 +1,13 @@
+<div class="row mt-5">
+    <div class="col-lg-6 mx-auto">
+      <ng-container *ngIf="publicacion">
+        <div class="alert alert-info">
+          <h2 class="mb-3">Posts</h2>
+          <p><strong>Nombre:</strong> {{ publicacion.title }}</p>
+          <p><strong>Contenido:</strong> {{ publicacion.body }}</p>
+          <p><strong>Reacciones:</strong> {{ publicacion.reactions }}</p>
+          
+        </div>
+      </ng-container>
+    </div>
+  </div>

@@ -1,0 +1,17 @@
+/* styles.css */
+@import '~bootstrap/dist/css/bootstrap.css';
+
+/* styles.css */
+.btn-custom {
+    background-color: #007bff;
+    color: #fff; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    border-color: #007bff; 
+  }
+  
+  .btn-custom:hover {
+    background-color: #0056b3; 
+    border-color: #0056b3; 
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); 
+  }
+  
