@@ -15,4 +15,15 @@
     border-color: #0056b3; 
     box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); 
   }
+
+  .error-message {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+  }
+  .error-icon {
+    font-size: 24px; /* Tamaño del ícono */
+    margin-right: 5px; /* Espacio entre el ícono y el mensaje de error */
+  }
+  
   
