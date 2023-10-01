@@ -1,6 +1,6 @@
 <div class="row mt-5">
   <div class="col-lg-6 mx-auto">
-    <div class="alert alert-info">
+    <div class="alert alert-primary">
       <h2>Posts</h2>
       <p class="bold">
         <i class="bi bi-journal-text custom-icon"></i>
@@ -12,23 +12,32 @@
           <div class="alert alert-info">
             <h3>{{ post.title }}</h3>
             <p>{{ post.body }}</p>
-            <p>
+            <p class="comments">
               <i class="bi bi-chat-left-text custom-icon"></i>
               Comments: {{ countComentariosPorPublicacion(i) }}
             </p>
-          </div>
 
-          <h2>Comments</h2>
+            <div class="alert alert-secondary">
+
           <div *ngIf="comentarios?.[i] && comentarios?.[i].length > 0; else noComments">
             <div *ngFor="let comentario of comentarios?.[i]">
-              <p>User: {{ comentario.user?.username }}</p>
+              <div class="alert alert-light" role="alert">
+              <p>
+                <i class="bi bi-person-circle custom-icon"></i>
+                User: {{ comentario.user?.username }}
+              </p>
               <p>{{ comentario.body }}</p>
               <br>
             </div>
+            </div>
           </div>
+        </div>
+
           <ng-template #noComments>
             <p>No comments available.</p>
           </ng-template>
+          </div>
+
         </div>
       </ng-container>
       <ng-template #noPosts>

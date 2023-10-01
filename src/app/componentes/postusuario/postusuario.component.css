@@ -28,3 +28,14 @@ h2 {
     border-width: 4px; /* Grosor del borde aumentado a 4px*/
     padding: 6px; /* Espaciado interior para el borde */
 }
+
+.comments{
+  font-weight: bolder;
+}
+
+.comment-box {
+  background-color: #17a2b8; /* Color de fondo personalizado */
+  border: 3px solid #ccc; /* Borde personalizado */
+  padding: 10px; /* Espaciado interno */
+  margin-bottom: 10px; /* Margen inferior */
+}
