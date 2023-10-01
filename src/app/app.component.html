@@ -22,16 +22,6 @@
   </ng-container>
 
   <ng-container *ngIf="publicacion">
-    <app-postusuario [publicacion]="publicacion"></app-postusuario>
-    <h2>Comments</h2>
-    <div *ngIf="comentarios && comentarios.length > 0; else noComments">
-      <div *ngFor="let comentario of comentarios">
-        <p>{{ comentario.user.username }}: {{ comentario.body }}</p>
-      </div>
-    </div>
-    <ng-template #noComments>
-      <p>No comments available.</p>
-    </ng-template>
-    <p>Number of comments: {{ countComentarios() }}</p>
+    <app-postusuario [publicacion]="publicacion" [comentarios]="comentarios"></app-postusuario>
   </ng-container>
 </div>

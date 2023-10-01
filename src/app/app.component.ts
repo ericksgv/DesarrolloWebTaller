@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { User } from './models/User';
 import { Post } from './models/Post';
 import { HttpClient } from '@angular/common/http';
-import { Observable, mergeMap, of } from 'rxjs';
+import { Observable, concatMap, mergeMap, of } from 'rxjs';
 import { forkJoin } from 'rxjs';
 
 import { Comment } from './models/Comment';
@@ -23,7 +23,7 @@ export class AppComponent {
   //Este puede ser nulo, mientras el usuario lo busca
   usuario: User | null = null;
 
-  comentarios: Comment[] | null = [];
+  comentarios: Comment[] = [];
 
 
   //Tambien vamos a tener un mensaje de error y un post del usuario
@@ -44,28 +44,21 @@ export class AppComponent {
       this.mensajeError = "User not found"
       this.usuario = null
       this.publicacion = null
-      this.comentarios = null
 
     }
   }
 
-  //Crearemos esta segunda funcion que obtiene el post del usuario a partir de su id
-  getPost(id: Number) {
-    this.http
-      .get(this.ROOT_URL + '/posts?userId=' + id)
-      .subscribe((postInfo: any) => (this.publicacion = postInfo[0]));
-  }
 
   //Finalmente creamos una funcion que trae al usuario y POSTERIORMENTE sus post
 
   getUserAndPost() {
-    // Hacemos primero la petición para buscar el usuario
+    // Realizamos una solicitud HTTP para buscar el usuario
     this.http
       .get<User>(this.ROOT_URL + '/users/filter?key=username&value=' + this.txtUser)
       .pipe(
         mergeMap((userInfo: any) => {
           if (!userInfo || userInfo.length === 0) {
-            this.mensajeError = 'Usuario no encontrado';
+            this.mensajeError = 'User not found';
             this.usuario = null;
             return of(null);
           } else {
@@ -80,20 +73,41 @@ export class AppComponent {
             };
             this.usuario = user;
             this.mensajeError = '';
-            return forkJoin({
-              posts: this.http.get<Post[]>(this.ROOT_URL + '/posts/user/' + this.usuario.id),
-              comments: this.http.get<Comment[]>(this.ROOT_URL + '/comments/post/' + this.usuario.id),
+            // Realizamos otra solicitud para obtener las publicaciones del usuario
+            return this.http.get<Post>(this.ROOT_URL + '/posts/user/' + userInfo.users[0].id);
+          }
+        }),
+        concatMap((postInfo: any) => {
+          if (!postInfo || postInfo.length === 0) {
+            this.mensajeError = 'Comments not found';
+            return of(null);
+          } else {
+            //console.log(postInfo.posts)
+            this.publicacion = postInfo.posts;
+            this.mensajeError = '';
+            const commentRequests = postInfo.posts.map((post: any) => {
+              return this.http.get<Comment[]>(this.ROOT_URL + '/comments/post/' + post.id);
             });
+            //console.log(commentRequests)
+            return forkJoin (commentRequests);
           }
         })
+        
       )
-      .subscribe((result: any) => {
-        this.publicacion = result.posts.posts
-        this.comentarios = result.comments.comments;
-        console.log('Result:', result);
-      });
+      .subscribe(
+        (info: any) => {
+          const allComments = info[0].comments;
+          console.log(allComments)
+          this.comentarios = allComments;
+          
+        },
+        error => {
+          console.error('Error al obtener datos:', error);
+        }
+      );
+      
   }
-  countComentarios(): number {
-    return this.comentarios ? this.comentarios.length : 0;
-  }
+
+  
+
 }
